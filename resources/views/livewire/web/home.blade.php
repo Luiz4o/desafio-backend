@@ -17,4 +17,18 @@
             </a>
         @endforeach
     </div>
+    <div class="flex justify-center space-x-2 mt-4">
+        @php
+            $start = max($filmes->currentPage() - 2, 1);
+            $end = min($start + 4, $filmes->lastPage());
+        @endphp
+
+        @for ($i = $start; $i <= $end; $i++)
+            <button wire:click="goToPageNumber({{ $i }})"
+                class="px-3 py-2 {{ $filmes->currentPage() == $i ? 'bg-red-500 text-white' : 'bg-black-200' }}">
+                {{ $i }}
+            </button>
+        @endfor
+
+    </div>
 </div>
